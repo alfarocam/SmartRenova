@@ -1,0 +1,57 @@
+<!DOCTYPE html> 
+<!-- Mi primera página html -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"> 
+    <head th:replace="~{layout/plantilla :: head}"/> 
+
+    <body>  
+        <header th:replace="~{layout/plantilla :: header}"/> 
+        <main class="flex-fill">
+            <main class="flex-fill">
+                <section class="hero-section text-center">
+                    <h1 class="hero-title">Transforma tu espacio de<br>manera sostenible</h1>
+
+                    <div class="hero-subtitle">
+                        Gestiona materiales, optimiza presupuestos y reduce tu impacto ambiental
+                    </div>
+
+                    <div class="ods-buttons mt-4">
+                        <div class="ods-circle">ODS 9</div>
+                        <div class="ods-circle">ODS 12</div>
+                    </div>
+                    <div class="benefits-section text-center mt-5 mb-5">
+                        <h2 class="benefits-title">Beneficios</h2>
+                        <div class="benefits-container">
+                            <div class="benefit-card">
+                                <i class="fas fa-dollar-sign fa-3x"></i>
+                                <h5>Optimiza tu presupuesto</h5>
+                                <p>Planifica y controla gastos</p>
+                            </div>
+                            <div class="benefit-card">
+                                <i class="fas fa-recycle fa-3x"></i>
+                                <h5>Materiales Sostenibles</h5>
+                                <p>Opciones eco-amigables</p>
+                            </div>
+                            <div class="benefit-card">
+                                <i class="fas fa-list fa-3x"></i>
+                                <h5>Compara opciones</h5>
+                                <p>Analiza cada alternativa</p>
+                            </div>
+                            <div class="benefit-card">
+                                <i class="fas fa-map-marker-alt fa-3x"></i>
+                                <h5>Proveedores locales</h5>
+                                <p>Encuentra cerca de ti</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+            </main>
+
+
+            <footer th:replace="~{layout/plantilla :: footer}"/>  
+
+    </body>
+</html>

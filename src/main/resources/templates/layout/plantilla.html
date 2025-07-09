@@ -1,0 +1,153 @@
+<!DOCTYPE html> 
+<!-- Mi primera página html -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"> <!-- Sec de security -->
+    <head th:fragment="head">
+        <title>SmartRenova</title>
+        <meta charset="UTF-8"/>
+        <link rel="icon" href="/fav/favicon_192x192.png" type="image/png"/>
+        <link rel="icon" type="image/png" sizes="16x16" href="/fav/favicon_16x16.png"/>
+        <link rel="icon" type="image/png" sizes="32x32" href="/fav/favicon_32x32.png"/>
+        <link rel="icon" type="image/png" sizes="96x96" href="/fav/favicon_96x96.png"/>
+        <link rel="icon" type="image/png" sizes="192x192" href="/fav/favicon_192x192.png"/>
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+        <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
+        <link th:href="@{/css/estilos.css}" rel="stylesheet" />
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+        <script th:src="@{/js/rutinas.js}"></script>
+        <!-- Todos estos links son los que se deben usar para usar font-awesome o jquery etc... -->
+    </head>
+
+    <body>  
+        <header th:fragment="header" class="header">
+            <!-- Navbar superior -->
+            <nav class="navbar navbar-custom">
+                <div class="container-fluid d-flex align-items-center justify-content-between">
+                    <!-- Logo y nombre -->
+                    <div class="d-flex align-items-center">
+                        <a class="navbar-brand" href="/">
+                            SmartRenova
+                            <img src="/img/Logo.png" alt="Logo" />
+                        </a>
+                    </div>
+
+                    <!-- Barra de búsqueda -->
+                    <div class="position-relative">
+                        <input type="text" class="search-bar" placeholder="¿Buscas algo?" />
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+
+                    <!-- Botones de cuenta, carrito y ubicación -->
+                    <div class="d-flex align-items-center">
+                        <button class="icon-button">
+                            Mi Cuenta <i class="fas fa-user"></i>
+                        </button>
+                        <button class="icon-button position-relative" data-bs-toggle="modal" data-bs-target="#cartModal">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">0</span>
+                        </button>
+                        <button class="icon-button">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </button>
+                    </div>        </div>
+            </nav>
+
+            <div class="menu-buttons">
+                <button class="btn-menu">Inicio</button>
+                <div class="dropdown">
+                    <button class="btn-menu dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        Categorías
+                    </button>
+                    <div class="dropdown-menu categories-dropdown" aria-labelledby="dropdownMenuButton">
+                        <div class="category-section">
+                            <h5 class="category-title">Pinturas</h5>
+                        </div>
+                        <div class="category-section">
+                            <h5 class="category-title">Electricidad e iluminación</h5>
+                        </div>
+                        <div class="category-section">
+                            <h5 class="category-title">Revestimientos y pisos</h5>
+                        </div>
+                        <div class="category-section">
+                            <h5 class="category-title">Puertas y ventanas</h5>
+                        </div>
+                        <div class="category-section">
+                            <h5 class="category-title">Techos y cubiertas</h5>
+                        </div>
+                        <div class="category-section">
+                            <h5 class="category-title">Herramientas y accesorios</h5>
+                        </div>
+                        <div class="category-section">
+                            <h5 class="category-title">Materiales de construcción</h5>
+                        </div>
+                        <div class="category-section">
+                            <h5 class="category-title">Materiales de carpintería</h5>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-menu">Presupuestos</button>
+                <button class="btn-menu">Listas</button>
+                <button class="btn-menu">Favoritos</button>
+            </div>
+
+            <!-- Modal del Carrito -->
+            <div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="d-flex align-items-center">
+                                <img src="/img/Logo.png" alt="Logo" width="40" height="40" class="me-2">
+                                    <h5 class="modal-title" id="cartModalLabel">Carrito de Compras</h5>
+                            </div>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="table-responsive">
+                                <table class="table cart-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Producto</th>
+                                            <th>Precio</th>
+                                            <th>Cantidad</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Pintura Blanca Corona 1 galón</td>
+                                            <td>₡16,500</td>
+                                            <td>1</td>
+                                            <td>₡16,500</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            <div class="total-amount">
+                                <strong>Total a cancelar:</strong>
+                            </div>
+                            <div class="total-price">
+                                <strong>₡16,500</strong>
+                            </div>
+                        </div>
+                        <div class="modal-payment">
+                            <button class="btn-pay">Pagar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </header>
+
+
+
+
+        <footer th:fragment="footer" class="p-2 mt-5 bg-verde text-white" style="font-style: italic;">  
+            <p class="lead text-center">[[#{plantilla.derechos}]] &COPY;</p> <!-- Viene de messages.properties, se conoce como internalización de la pagina web -->
+        </footer>
+    </body>
+</html>
