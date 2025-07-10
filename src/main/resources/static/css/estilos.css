@@ -417,6 +417,7 @@ footer {
 }
 
 /* Asegurar que el modal esté sobre otros elementos */
+/* Asegurar que el modal esté sobre otros elementos */
 .modal {
     z-index: 1060;
 }
