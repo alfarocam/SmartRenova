@@ -27,5 +27,5 @@ Esta versión contiene el 40% mínimo de las historias de usuario requeridas par
 - [x] Conexión a base de datos MySQL (`smartrenova`)
 - [x] Aplicación funcional y ejecutable
 
-## 🔐 Base de datos
-**Script disponible** en el archivo `smartrenova.sql` (ver carpeta raíz del proyecto).
+## 🔒 Base de datos
+**Script disponible** en el archivo [`smartrenova.sql`](https://github.com/alfarocam/SmartRenova/blob/master/smartrenova.sql) (ver carpeta raíz del proyecto).
