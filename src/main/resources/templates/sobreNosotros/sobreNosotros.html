@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+    <head th:replace="~{layout/plantilla :: head}" />
+    <body>
+        <header th:replace="~{layout/plantilla :: header}" />
+
+        <main class="flex-fill container my-5">
+            <h1 class="text-center mb-4 fst-italic">Sobre Nosotros</h1>
+            <p class="lead text-center" style="font-style: italic;">
+                SmartRenova es una plataforma que busca transformar los espacios de construcción y remodelación
+                con un enfoque sostenible, eficiente y local.
+            </p>
+
+            <div class="text-center mt-4">
+                <img src="/img/equipo.jpg" alt="Nuestro equipo" style="max-width: 100%; border-radius: 12px;">
+            </div>
+
+            <section class="mt-5 row">
+                <div class="col-md-6 mb-4">
+                    <h3 class="text-center fst-italic">Misión</h3>
+                    <p class="text-center">
+                        Facilitar la planificación y compra de materiales para remodelaciones responsables,
+                        promoviendo proveedores sostenibles y economía local.
+                    </p>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h3 class="text-center fst-italic">Visión</h3>
+                    <p class="text-center">
+                        Ser la plataforma líder en remodelaciones sostenibles en América Latina.
+                    </p>
+                </div>
+            </section>
+        </main>
+
+        <footer th:replace="~{layout/plantilla :: footer}" />
+    </body>
+</html>
