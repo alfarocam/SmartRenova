@@ -6,7 +6,7 @@ import lombok.Data;
 
 /**
  *
- * @author CamilaAlfaro 06/07/2025
+ * @author CamilaAlfaro 6/7/2025
  */
 
 @Data
