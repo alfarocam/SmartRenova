@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/plantilla :: head}"></head>
+<body>
+<header th:replace="~{layout/plantilla :: header}"></header>
+<main class="container my-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h5 m-0">Productos</h1>
+    <a class="btn btn-success" th:href="@{/producto/nuevo}"><i class="fa fa-plus"></i> Nuevo</a>
+  </div>
+
+  <th:block th:if="${#lists.isEmpty(productos)}">
+    <div class="alert alert-warning">No hay productos aún.</div>
+  </th:block>
+
+  <div th:if="${!#lists.isEmpty(productos)}" class="table-responsive">
+    <table class="table table-striped align-middle">
+      <thead>
+      <tr>
+        <th>ID</th><th>Descripción</th><th>Precio</th><th>Existencias</th>
+        <th>Activo</th><th>Categoría</th><th style="width:190px">Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="p : ${productos}">
+        <td th:text="${p.idProducto}">1</td>
+        <td th:text="${p.descripcion}">Pintura…</td>
+        <td>₡[[${#numbers.formatDecimal(p.precio,0,'POINT',0,'COMMA')}]]</td>
+        <td th:text="${p.existencias}">10</td>
+        <td><span th:text="${p.activo} ? 'Sí' : 'No'">Sí</span></td>
+        <td th:text="${p.categoria != null ? p.categoria.descripcion : '-'}">Pinturas</td>
+        <td>
+          <a class="btn btn-sm btn-secondary" th:href="@{'/producto/ver/' + ${p.idProducto}}">Ver</a>
+          <a class="btn btn-sm btn-primary"   th:href="@{'/producto/modificar/' + ${p.idProducto}}">Editar</a>
+          <a class="btn btn-sm btn-danger"    th:href="@{'/producto/eliminar/' + ${p.idProducto}}"
+             onclick="return confirm('¿Eliminar producto?')">Eliminar</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+<footer th:replace="~{layout/plantilla :: footer}"></footer>
+</body>
+</html>

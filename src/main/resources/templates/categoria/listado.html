@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/plantilla :: head}"></head>
+<body>
+<header th:replace="~{layout/plantilla :: header}"></header>
+<main class="container my-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h5 m-0">Categorías</h1>
+    <a class="btn btn-success" th:href="@{/categoria/nuevo}"><i class="fa fa-plus"></i> Nueva</a>
+  </div>
+
+  <th:block th:if="${#lists.isEmpty(categorias)}">
+    <div class="alert alert-warning">No hay categorías aún.</div>
+  </th:block>
+
+  <div th:if="${!#lists.isEmpty(categorias)}" class="table-responsive">
+    <table class="table table-striped align-middle">
+      <thead>
+        <tr><th>ID</th><th>Descripción</th><th style="width:160px">Acciones</th></tr>
+      </thead>
+      <tbody>
+        <tr th:each="c : ${categorias}">
+          <td th:text="${c.idCategoria}">1</td>
+          <td th:text="${c.descripcion}">Pinturas</td>
+          <td>
+            <a class="btn btn-sm btn-primary" th:href="@{'/categoria/modificar/' + ${c.idCategoria}}">Editar</a>
+            <a class="btn btn-sm btn-danger" th:href="@{'/categoria/eliminar/' + ${c.idCategoria}}"
+               onclick="return confirm('¿Eliminar categoría?')">Eliminar</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+<footer th:replace="~{layout/plantilla :: footer}"></footer>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/plantilla :: head}"></head>
+<body>
+<header th:replace="~{layout/plantilla :: header}"></header>
+<main class="container my-4">
+  <h1 class="h5 mb-3">Producto</h1>
+
+  <form th:action="@{/producto/guardar}" th:object="${producto}" method="post" class="row g-3">
+    <input type="hidden" th:field="*{idProducto}"/>
+
+    <div class="col-md-6">
+      <label class="form-label">Descripción</label>
+      <input class="form-control" th:field="*{descripcion}" required>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Detalle</label>
+      <input class="form-control" th:field="*{detalle}">
+    </div>
+
+    <div class="col-md-4">
+      <label class="form-label">Precio</label>
+      <input type="number" step="0.01" min="0" class="form-control" th:field="*{precio}" required>
+    </div>
+
+    <div class="col-md-4">
+      <label class="form-label">Existencias</label>
+      <input type="number" min="0" class="form-control" th:field="*{existencias}" required>
+    </div>
+
+    <div class="col-md-4">
+      <label class="form-label">Categoría</label>
+      <select class="form-select" th:field="*{categoria}" required>
+        <option th:each="c : ${categorias}" th:value="${c}" th:text="${c.descripcion}"></option>
+      </select>
+    </div>
+
+    <div class="col-12">
+      <label class="form-label">Ruta imagen</label>
+      <input class="form-control" th:field="*{rutaImagen}">
+      <small class="text-muted">Ej: /img/productos/pintura-corona-blanca-1gal.png</small>
+    </div>
+
+    <div class="col-12">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" th:field="*{activo}">
+        <label class="form-check-label">Activo</label>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <button class="btn btn-success">Guardar</button>
+      <a class="btn btn-secondary" th:href="@{/producto/listado}">Cancelar</a>
+    </div>
+  </form>
+</main>
+<footer th:replace="~{layout/plantilla :: footer}"></footer>
+</body>
+</html>

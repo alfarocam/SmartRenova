@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/plantilla :: head}"></head>
+<body>
+<header th:replace="~{layout/plantilla :: header}"></header>
+
+<main class="container my-4">
+    <nav class="mb-3"><a th:href="@{/catalogo}">← Volver al catálogo</a></nav>
+
+    <div class="row g-4">
+        <div class="col-md-5">
+            <img class="img-fluid border rounded p-3" th:src="${producto.rutaImagen}" th:alt="${producto.descripcion}">
+        </div>
+
+        <div class="col-md-7">
+            <h1 class="sr-detail-title mb-3" th:text="${producto.descripcion}">Producto</h1>
+            <p class="lead sr-price mb-1">₡[[${#numbers.formatDecimal(producto.precio,0,'POINT',0,'COMMA')}]]</p>
+            <p class="sr-detail-desc">[[${producto.detalle}]]</p>
+
+            <div class="d-flex align-items-center gap-2 my-3">
+                <a class="btn sr-btn sr-btn-primary" href="#">+ Agregar</a>
+                <button class="sr-btn sr-btn-outline"><i class="fa-regular fa-heart"></i></button>
+            </div>
+
+            <!-- Anillo ECO -->
+            <div class="sr-eco-ring mt-4" style="--p:.8">
+                <div class="inner">
+                    80%<br/>Eco-Friendly
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="~{layout/plantilla :: footer}"></footer>
+</body>
+</html>

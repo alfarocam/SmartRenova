@@ -148,13 +148,33 @@ footer {
     background-color: #a0b243 !important;
 }
 
+/* Altura responsive del héroe */
 .hero-section {
     position: relative;
     overflow: hidden;
-    padding: 400px 80px;
+    padding: clamp(140px, 28vh, 320px) 24px; /* min 140px, preferible 28vh, máx 320px */
     color: white;
     z-index: 1;
 }
+
+/* Ajustes tipográficos y espaciados en resoluciones medias */
+@media (max-width: 1200px) {
+  .navbar-custom .navbar-brand { font-size: 34px; }
+  .navbar-custom .navbar-brand img { width: 64px; height: 64px; }
+  .menu-buttons { gap: 20px; padding: 8px 20px; }
+  .btn-menu { padding: 8px 16px; font-size: 15px; }
+  .hero-subtitle { font-size: 1.05rem; }
+}
+
+/* Móvil/tablet */
+@media (max-width: 768px) {
+  .hero-section { padding: 140px 16px; }
+  .hero-title   { font-size: 1.9rem; }
+  .hero-subtitle{ font-size: 1rem; }
+  .ods-buttons  { gap: 12px; }
+  .ods-circle   { width: 64px; height: 64px; font-size: .9rem; }
+}
+
 
 .hero-section::before {
     content: "";

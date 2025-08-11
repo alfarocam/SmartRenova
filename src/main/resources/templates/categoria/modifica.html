@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/plantilla :: head}"></head>
+<body>
+<header th:replace="~{layout/plantilla :: header}"></header>
+<main class="container my-4">
+  <h1 class="h5 mb-3">Categoría</h1>
+
+  <form th:action="@{/categoria/guardar}" th:object="${categoria}" method="post" class="row g-3">
+    <input type="hidden" th:field="*{idCategoria}"/>
+
+    <div class="col-md-8">
+      <label class="form-label">Descripción</label>
+      <input class="form-control" th:field="*{descripcion}" required>
+    </div>
+
+    <div class="col-md-8">
+      <label class="form-label">Ruta imagen (opcional)</label>
+      <input class="form-control" th:field="*{rutaImagen}">
+    </div>
+
+    <div class="col-12">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" th:field="*{activo}">
+        <label class="form-check-label">Activo</label>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <button class="btn btn-success">Guardar</button>
+      <a class="btn btn-secondary" th:href="@{/categoria/listado}">Cancelar</a>
+    </div>
+  </form>
+</main>
+<footer th:replace="~{layout/plantilla :: footer}"></footer>
+</body>
+</html>
