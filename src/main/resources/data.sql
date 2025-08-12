@@ -1,6 +1,6 @@
 
 -- Categorías (8 principales o precargadas)
-INSERT INTO categoria (descripcion) VALUES ('Pinturas')
+/*INSERT INTO categoria (descripcion) VALUES ('Pinturas')
 ON DUPLICATE KEY UPDATE descripcion = VALUES(descripcion);
 INSERT INTO categoria (descripcion) VALUES ('Electricidad e iluminación')
 ON DUPLICATE KEY UPDATE descripcion = VALUES(descripcion);
@@ -15,4 +15,4 @@ ON DUPLICATE KEY UPDATE descripcion = VALUES(descripcion);
 INSERT INTO categoria (descripcion) VALUES ('Materiales de construcción')
 ON DUPLICATE KEY UPDATE descripcion = VALUES(descripcion);
 INSERT INTO categoria (descripcion) VALUES ('Materiales de carpintería')
-ON DUPLICATE KEY UPDATE descripcion = VALUES(descripcion);
+ON DUPLICATE KEY UPDATE descripcion = VALUES(descripcion);*/

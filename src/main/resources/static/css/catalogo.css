@@ -1,0 +1,111 @@
+/* === SmartRenova – Catálogo & Detalle === */
+
+/* Variables y tipografía (opcionales). Si ya usas otra fuente, puedes quitar el @import. */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root{
+  --sr-green-700:#6f8420;
+  --sr-green-600:#a0b243;  /* combina con tu navbar actual */
+  --sr-green-100:#e8f0c8;
+  --sr-gray-900:#232424;
+  --sr-gray-700:#4a4a4a;
+  --sr-white:#fff;
+
+  --sr-radius-lg:20px;
+  --sr-radius-md:14px;
+
+  --sr-shadow-sm:0 6px 14px rgba(0,0,0,.08);
+  --sr-shadow-md:0 12px 26px rgba(0,0,0,.12);
+}
+
+body{ font-family:"Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+
+/* =================  Tabs de categorías  ================= */
+.sr-tabs .nav-link{
+  border-radius:999px;
+  background:var(--sr-white);
+  color:var(--sr-gray-900);
+  box-shadow:var(--sr-shadow-sm);
+  margin-right:.5rem;
+  font-weight:600;
+  padding:.5rem 1rem;
+}
+.sr-tabs .nav-link.active{
+  background:var(--sr-green-700);
+  color:#fff;
+}
+
+/* =================  Cards de producto  ================= */
+.sr-card{
+  border:none;
+  border-radius:var(--sr-radius-lg);
+  box-shadow:var(--sr-shadow-sm);
+  transition:transform .15s ease, box-shadow .15s ease;
+  background:#fff;
+}
+.sr-card:hover{
+  transform:translateY(-2px);
+  box-shadow:var(--sr-shadow-md);
+}
+.sr-card .card-img-top{
+  height:180px;
+  object-fit:contain;
+}
+.sr-card .card-title{
+  font-size:.95rem; font-weight:600;
+  line-height:1.3; min-height:2.6em;
+}
+.sr-price{ font-weight:700; font-size:1.05rem; }
+
+/* Botones “píldora” */
+.sr-btn{ border-radius:999px; font-weight:600; }
+.sr-btn-primary{
+  background:var(--sr-green-600);
+  border:none; color:#fff;
+}
+.sr-btn-primary:hover{ filter:brightness(0.95); }
+.sr-btn-outline{
+  border:2px solid var(--sr-green-600); color:var(--sr-green-700);
+  background:#fff;
+}
+.sr-btn-outline:hover{ background:var(--sr-green-100); }
+
+/* Corazón / favorito */
+.sr-btn-heart{
+  width:44px; height:44px;
+  border-radius:999px;
+  border:2px solid var(--sr-green-600);
+  background:#fff;
+  display:grid; place-items:center;
+}
+.sr-add-wrap{ display:flex; gap:.5rem; }
+
+/* =================  Vista de detalle  ================= */
+.sr-detail-title{ font-size:1.4rem; font-weight:700; }
+.sr-detail-desc{ color:var(--sr-gray-700); }
+
+/* Anillo ECO (usa --p entre 0 y 1) */
+.sr-eco-ring{
+  --p:.8;
+  width:180px; height:180px;
+  border-radius:50%;
+  background: conic-gradient(var(--sr-green-600) calc(var(--p)*1turn), #e5e7eb 0);
+  display:grid; place-items:center;
+  box-shadow:var(--sr-shadow-sm);
+}
+.sr-eco-ring .inner{
+  width:128px; height:128px;
+  border-radius:50%;
+  background:#fff;
+  display:grid; place-items:center;
+  text-align:center;
+  line-height:1.1;
+  color:var(--sr-gray-700);
+  font-weight:600;
+}
+
+@media (max-width: 576px){
+  .sr-card .card-img-top{ height:160px; }
+}
+
+.category-title.active { color:#6c7a2c; font-weight:700; }

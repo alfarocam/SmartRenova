@@ -16,11 +16,11 @@
   <div th:if="${!#lists.isEmpty(categorias)}" class="table-responsive">
     <table class="table table-striped align-middle">
       <thead>
-        <tr><th>ID</th><th>Descripción</th><th style="width:160px">Acciones</th></tr>
+        <tr><!--<th>ID</th>--><th>Descripción</th><th style="width:160px">Acciones</th></tr>
       </thead>
       <tbody>
         <tr th:each="c : ${categorias}">
-          <td th:text="${c.idCategoria}">1</td>
+            <!--<td th:text="${c.idCategoria}">1</td>-->
           <td th:text="${c.descripcion}">Pinturas</td>
           <td>
             <a class="btn btn-sm btn-primary" th:href="@{'/categoria/modificar/' + ${c.idCategoria}}">Editar</a>
