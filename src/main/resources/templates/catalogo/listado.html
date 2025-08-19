@@ -1,39 +1,40 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
-<head th:replace="~{layout/plantilla :: head}"></head>
-<body>
-<header th:replace="~{layout/plantilla :: header}"></header>
+    <head th:replace="~{layout/plantilla :: head}"></head>
+    <body>
+        <header th:replace="~{layout/plantilla :: header}"></header>
 
-<main class="container my-4">
+        <main class="container my-4">
 
-    <h2 class="h5 mb-3">[[${tituloCategoria}]]</h2>
+            <h2 class="h5 mb-3">[[${tituloCategoria}]]</h2>
 
-    <!-- Tarjetas de productos -->
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-4">
-        <div class="col" th:each="p : ${productos}">
-            <div class="card sr-card h-100">
-                <a th:href="@{'/producto/' + ${p.idProducto}}">
-                    <img class="card-img-top p-3" th:src="${p.rutaImagen}" th:alt="${p.descripcion}">
-                </a>
-                <div class="card-body">
-                    <h6 class="card-title mb-2" th:text="${p.descripcion}">Descripción</h6>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span class="sr-price">₡[[${#numbers.formatDecimal(p.precio,0,'POINT',0,'COMMA')}]]</span>
-                        <small class="text-muted" th:text="'(' + ${p.existencias} + ')'">existencias</small>
-                    </div>
-                </div>
-                <div class="card-footer bg-white border-0 pb-3">
-                    <div class="sr-add-wrap">
-                        <a class="btn sr-btn sr-btn-primary flex-fill" href="#" role="button">+ Agregar</a>
-                        <button class="sr-btn sr-btn-heart"><i class="fa-regular fa-heart"></i></button>
+            <!-- Tarjetas de productos -->
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-4">
+                <div class="col" th:each="p : ${productos}">
+                    <div class="card sr-card h-100">
+                        <a th:href="@{'/producto/' + ${p.idProducto}}">
+                            <img class="card-img-top p-3" th:src="${p.rutaImagen}" th:alt="${p.descripcion}">
+                        </a>
+                        <div class="card-body">
+                            <h6 class="card-title mb-2" th:text="${p.descripcion}">Descripción</h6>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="sr-price">₡[[${#numbers.formatDecimal(p.precio,0,'POINT',0,'COMMA')}]]</span>
+                                <small class="text-muted" th:text="'(' + ${p.existencias} + ')'">existencias</small>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-0 pb-3">
+                            <div class="sr-add-wrap">
+
+                                <a th:href="@{|/carrito/agregar/${p.idProducto}|}" class="btn sr-btn sr-btn-primary flex-fill" href="#" role="button">+ Agregar</a>
+                                <button class="sr-btn sr-btn-heart"><i class="fa-regular fa-heart"></i></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</main>
+        </main>
 
-<footer th:replace="~{layout/plantilla :: footer}"></footer>
-</body>
+        <footer th:replace="~{layout/plantilla :: footer}"></footer>
+    </body>
 </html>

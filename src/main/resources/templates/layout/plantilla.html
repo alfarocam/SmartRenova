@@ -2,164 +2,168 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
-  <head th:fragment="head">
-    <title>SmartRenova</title>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <head th:fragment="head">
+        <title>SmartRenova</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <link rel="icon" href="/fav/favicon_192x192.png" type="image/png"/>
-    <link rel="icon" type="image/png" sizes="16x16" href="/fav/favicon_16x16.png"/>
-    <link rel="icon" type="image/png" sizes="32x32" href="/fav/favicon_32x32.png"/>
-    <link rel="icon" type="image/png" sizes="96x96" href="/fav/favicon_96x96.png"/>
-    <link rel="icon" type="image/png" sizes="192x192" href="/fav/favicon_192x192.png"/>
+        <link rel="icon" href="/fav/favicon_192x192.png" type="image/png"/>
+        <link rel="icon" type="image/png" sizes="16x16" href="/fav/favicon_16x16.png"/>
+        <link rel="icon" type="image/png" sizes="32x32" href="/fav/favicon_32x32.png"/>
+        <link rel="icon" type="image/png" sizes="96x96" href="/fav/favicon_96x96.png"/>
+        <link rel="icon" type="image/png" sizes="192x192" href="/fav/favicon_192x192.png"/>
 
-    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
-    <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
-    <link th:href="@{/css/estilos.css}" rel="stylesheet"/>
-    <link th:href="@{/css/catalogo.css}" rel="stylesheet"/>
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+        <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
+        <link th:href="@{/css/estilos.css}" rel="stylesheet"/>
+        <link th:href="@{/css/catalogo.css}" rel="stylesheet"/>
 
-    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-    <script th:src="@{/js/rutinas.js}"></script>
-  </head>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+        <script th:src="@{/js/rutinas.js}"></script>
+    </head>
 
-  <body>
-    <header th:fragment="header" class="header">
-      <!-- Navbar superior -->
-      <nav class="navbar navbar-custom">
-        <div class="container-fluid d-flex align-items-center justify-content-between">
-          <!-- Logo y nombre -->
-          <div class="d-flex align-items-center">
-            <a class="navbar-brand" th:href="@{/}">
-              SmartRenova
-              <img src="/img/Logo.png" alt="Logo"/>
-            </a>
-          </div>
+    <body>
+        <header th:fragment="header" class="header">
+            <!-- Navbar superior -->
+            <nav class="navbar navbar-custom">
+                <div class="container-fluid d-flex align-items-center justify-content-between">
+                    <!-- Logo y nombre -->
+                    <div class="d-flex align-items-center">
+                        <a class="navbar-brand" th:href="@{/}">
+                            SmartRenova
+                            <img src="/img/Logo.png" alt="Logo"/>
+                        </a>
+                    </div>
 
-          <!-- Barra de búsqueda (funcional) -->
-          <form class="position-relative" th:action="@{/catalogo/buscar}" method="get">
-            <input type="text" name="q" class="search-bar"
-                   placeholder="¿Buscas algo?" th:value="${param.q}"/>
-            <button type="submit" class="search-icon" style="background:transparent;border:0;">
-              <i class="fas fa-search"></i>
-            </button>
-          </form>
+                    <!-- Barra de búsqueda (funcional) -->
+                    <form class="position-relative" th:action="@{/catalogo/buscar}" method="get">
+                        <input type="text" name="q" class="search-bar"
+                               placeholder="¿Buscas algo?" th:value="${param.q}"/>
+                        <button type="submit" class="search-icon" style="background:transparent;border:0;">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
 
-          <!-- Botones de cuenta, carrito y ubicación -->
-          <div class="d-flex align-items-center">
-            <button class="icon-button">
-              Mi Cuenta <i class="fas fa-user"></i>
-            </button>
-            <button class="icon-button position-relative" data-bs-toggle="modal" data-bs-target="#cartModal">
-              <i class="fas fa-shopping-cart"></i>
-              <span class="cart-count">0</span>
-            </button>
-            <button class="icon-button">
-              <i class="fas fa-map-marker-alt"></i>
-            </button>
-          </div>
-        </div>
-      </nav>
+                    <!-- Botones de cuenta, carrito y ubicación -->
+                    <div class="d-flex align-items-center">
+                        <button class="icon-button">
+                            Mi Cuenta <i class="fas fa-user"></i>
+                        </button>
+                        <button class="icon-button position-relative" data-bs-toggle="modal" data-bs-target="#cartModal">
+                            <i class="fas fa-shopping-cart"></i>
+                            
+                            <span th:text="${carritoCount}">0</span>
 
-      <div class="menu-buttons">
-        <!-- Inicio como enlace al index -->
-        <a class="btn-menu" th:href="@{/}" role="button">Inicio</a>
+                        </button>
+                        <button class="icon-button">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </nav>
 
-        <!-- Dropdown de Categorías (solo dinámico para evitar duplicados) -->
-        <div class="dropdown">
-          <button class="btn-menu dropdown-toggle" type="button" id="dropdownMenuButton"
-                  data-bs-toggle="dropdown" aria-expanded="false">
-            Categorías
-          </button>
+            <div class="menu-buttons">
+                <!-- Inicio como enlace al index -->
+                <a class="btn-menu" th:href="@{/}" role="button">Inicio</a>
 
-          <div class="dropdown-menu categories-dropdown"
-               aria-labelledby="dropdownMenuButton" th:if="${categorias}">
-            <!-- Todas -->
-            <div class="category-section">
-              <a th:href="@{/catalogo}" class="text-decoration-none d-block">
-                <h5 class="category-title"
-                    th:classappend="${idCategoriaSeleccionada}==null ? ' active' : ''">Todas</h5>
-              </a>
+                <!-- Dropdown de Categorías (solo dinámico para evitar duplicados) -->
+                <div class="dropdown">
+                    <button class="btn-menu dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        Categorías
+                    </button>
+
+                    <div class="dropdown-menu categories-dropdown"
+                         aria-labelledby="dropdownMenuButton" th:if="${categorias}">
+                        <!-- Todas -->
+                        <div class="category-section">
+                            <a th:href="@{/catalogo}" class="text-decoration-none d-block">
+                                <h5 class="category-title"
+                                    th:classappend="${idCategoriaSeleccionada}==null ? ' active' : ''">Todas</h5>
+                            </a>
+                        </div>
+
+                        <!-- Iteración de categorías -->
+                        <div class="category-section" th:each="c : ${categorias}">
+                            <a th:href="@{'/catalogo/categoria/' + ${c.idCategoria}}"
+                               class="text-decoration-none d-block">
+                                <h5 class="category-title"
+                                    th:text="${c.descripcion}"
+                                    th:classappend="${idCategoriaSeleccionada}==${c.idCategoria} ? ' active' : ''">
+                                    Categoría
+                                </h5>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Si por alguna razón no viene 'categorias', mostramos solo 'Todas' -->
+                    <div class="dropdown-menu categories-dropdown"
+                         aria-labelledby="dropdownMenuButton" th:unless="${categorias}">
+                        <div class="category-section">
+                            <a th:href="@{/catalogo}" class="text-decoration-none d-block">
+                                <h5 class="category-title">Todas</h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn-menu">Presupuestos</button>
+                <button class="btn-menu">Listas</button>
+                <button class="btn-menu">Favoritos</button>
+                <button class="btn-menu" onclick="location.href = '/sobreNosotros'">Sobre Nosotros</button>
             </div>
 
-            <!-- Iteración de categorías -->
-            <div class="category-section" th:each="c : ${categorias}">
-              <a th:href="@{'/catalogo/categoria/' + ${c.idCategoria}}"
-                 class="text-decoration-none d-block">
-                <h5 class="category-title"
-                    th:text="${c.descripcion}"
-                    th:classappend="${idCategoriaSeleccionada}==${c.idCategoria} ? ' active' : ''">
-                  Categoría
-                </h5>
-              </a>
+            <!-- Modal del Carrito -->
+            <div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true" style="display:none;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="d-flex align-items-center">
+                                <img src="/img/Logo.png" alt="Logo" width="40" height="40" class="me-2">
+                                    <h5 class="modal-title" id="cartModalLabel">Carrito de Compras</h5>
+                            </div>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="table-responsive">
+                                <table class="table cart-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Producto</th>
+                                            <th>Precio</th>
+                                            <th>Cantidad</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="i : ${session.listaItems}">
+                                            <td th:text="${i.descripcion}">Producto</td>
+                                            <td th:text="${#numbers.formatDecimal(i.precio, 1, 'DEFAULT', 0, 'DEFAULT')}">₡0</td>
+                                            <td th:text="${i.cantidad}">1</td>
+                                            <td th:text="${#numbers.formatDecimal(i.cantidad * i.precio, 1, 'DEFAULT', 0, 'DEFAULT')}">₡0</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            <div class="total-amount"><strong>Total a cancelar:</strong></div>
+                            <span th:text="${#numbers.formatDecimal(@itemService.getTotal(), 1, 'DEFAULT', 0, 'DEFAULT')}">₡0</span>
+                        </div>
+                        <div class="modal-payment">
+                            <form th:action="@{/carrito/facturar}" method="post">
+                                <button type="submit" class="btn-pay">Pagar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+        </header>
 
-          <!-- Si por alguna razón no viene 'categorias', mostramos solo 'Todas' -->
-          <div class="dropdown-menu categories-dropdown"
-               aria-labelledby="dropdownMenuButton" th:unless="${categorias}">
-            <div class="category-section">
-              <a th:href="@{/catalogo}" class="text-decoration-none d-block">
-                <h5 class="category-title">Todas</h5>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <button class="btn-menu">Presupuestos</button>
-        <button class="btn-menu">Listas</button>
-        <button class="btn-menu">Favoritos</button>
-        <button class="btn-menu" onclick="location.href='/sobreNosotros'">Sobre Nosotros</button>
-      </div>
-
-      <!-- Modal del Carrito -->
-      <div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true" style="display:none;">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <div class="d-flex align-items-center">
-                <img src="/img/Logo.png" alt="Logo" width="40" height="40" class="me-2">
-                <h5 class="modal-title" id="cartModalLabel">Carrito de Compras</h5>
-              </div>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <div class="table-responsive">
-                <table class="table cart-table">
-                  <thead>
-                    <tr>
-                      <th>Producto</th>
-                      <th>Precio</th>
-                      <th>Cantidad</th>
-                      <th>Total</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Pintura Látex Blanco 4L</td>
-                      <td>₡45,000</td>
-                      <td>1</td>
-                      <td>₡45,000</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <div class="modal-footer justify-content-between">
-              <div class="total-amount"><strong>Total a cancelar:</strong></div>
-              <div class="total-price"><strong>₡45,000</strong></div>
-            </div>
-            <div class="modal-payment">
-              <button class="btn-pay">Pagar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <footer th:fragment="footer" class="p-2 mt-5 bg-verde text-white" style="font-style: italic;">
-      <p class="lead text-center">[[#{plantilla.derechos}]] &COPY;</p>
-    </footer>
-  </body>
+        <footer th:fragment="footer" class="p-2 mt-5 bg-verde text-white" style="font-style: italic;">
+            <p class="lead text-center">[[#{plantilla.derechos}]] &COPY;</p>
+        </footer>
+    </body>
 </html>
