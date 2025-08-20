@@ -3,10 +3,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import lombok.Data;
 
-/**
- *
- * @author CamilaAlfaro 06/07/2025
- */
+
 
 @Data
 @Entity

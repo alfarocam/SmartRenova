@@ -30,7 +30,7 @@ public class UsuarioController {
 
     @PostMapping("/guardar")
     public String guardar(Usuario usuario) {
-        usuarioService.save(usuario);
+        usuarioService.save(usuario,true);
         return "redirect:/usuario/listado";
     }
 

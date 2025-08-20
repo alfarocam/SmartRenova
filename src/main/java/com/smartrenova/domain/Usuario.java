@@ -1,18 +1,14 @@
 package com.smartrenova.domain;
+
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import lombok.Data;
-
-/**
- *
- * @author CamilaAlfaro 06/07/2025
- */
 
 @Data
 @Entity
 @Table(name = "usuario")
 public class Usuario implements Serializable {
-
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -43,4 +39,8 @@ public class Usuario implements Serializable {
 
     @Column(name = "activo")
     private Boolean activo;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idUsuario", updatable = false)
+    private List<Rol> roles;
 }

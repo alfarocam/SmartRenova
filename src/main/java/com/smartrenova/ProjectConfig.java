@@ -1,22 +1,14 @@
-
 package com.smartrenova;
 
-//import com.tienda.domain.Ruta;
-//import com.tienda.service.RutaPermitService;
-//import com.tienda.service.RutaService;
-//import java.util.List;
+import com.smartrenova.service.UsuarioDetailsService;
 import java.util.Locale;
-//import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-//import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-//import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-//import org.springframework.security.core.userdetails.User;
-//import org.springframework.security.core.userdetails.UserDetails;
-//import org.springframework.security.core.userdetails.UserDetailsService;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-//import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-//import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver;
@@ -28,14 +20,17 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 @Configuration
 public class ProjectConfig implements WebMvcConfigurer {
-    /* Los siguiente métodos son para implementar el tema de seguridad dentro del proyecto */
+    
+    @Autowired
+    private UsuarioDetailsService userDetailsService;
+
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("index");
         registry.addViewController("/login").setViewName("login");
         registry.addViewController("/registro/nuevo").setViewName("/registro/nuevo");
     }
-    /* El siguiente método se utilizar para publicar en la nube, independientemente  */
+
     @Bean
     public SpringResourceTemplateResolver templateResolver_0() {
         SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
@@ -64,8 +59,30 @@ public class ProjectConfig implements WebMvcConfigurer {
     }
     
     @Override
-    public void addInterceptors(InterceptorRegistry registro){
+    public void addInterceptors(InterceptorRegistry registro) {
         registro.addInterceptor(localeChangeInterceptor());
+    }
+    
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.authorizeHttpRequests((request) -> {
+            request
+                .requestMatchers("/", "/index", "/webjars/**", "/css/**", "/img/**", "/js/**", "/registro/**", "/login", "/sobreNosotros", "/catalogo/**", "/producto/**")
+                .permitAll()
+                .requestMatchers("/categoria/listado", "/producto/listado")
+                .hasRole("ADMIN")
+                .anyRequest().authenticated();
+        })
+        .formLogin((form) -> form
+            .loginPage("/login").permitAll()
+            .defaultSuccessUrl("/", true))
+        .logout((logout) -> logout.permitAll());
         
+        return http.build();
+    }
+    
+    @Autowired
+    public void configurerGlobal(AuthenticationManagerBuilder build) throws Exception {
+        build.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
     }
 }
