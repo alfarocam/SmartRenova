@@ -825,5 +825,136 @@ footer {
     font-style: italic;
 }
 
-/* Estilos base para el modal de Bootstrap */
-/* Estilos base para el modal de Bootstrap */
+/* Estilos para formularios de registro y activación */
+.registration-container {
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 0 15px;
+}
+
+.registration-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.registration-header {
+    background-color: #6c7a2c; /* Verde oscuro */
+    color: white;
+    padding: 1.5rem;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.8rem;
+}
+
+.registration-body {
+    padding: 2rem;
+    background-color: white;
+}
+
+/* Estilos para campos de formulario en registros */
+.registration-card .form-control {
+    border-radius: 25px;
+    padding: 0.75rem 1.5rem;
+    border: 2px solid #e9ecef;
+    transition: all 0.3s;
+}
+
+.registration-card .form-control:focus {
+    border-color: #a0b243; /* Verde intermedio */
+    box-shadow: 0 0 0 0.2rem rgba(160, 178, 67, 0.25);
+}
+
+.registration-card label {
+    font-weight: 500;
+    color: #495057;
+    margin-bottom: 0.5rem;
+}
+
+/* Botones para formularios de registro */
+.btn-registration {
+    background-color: #6c7a2c; /* Verde oscuro */
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 30px;
+    font-weight: 600;
+    font-style: italic;
+    transition: all 0.3s;
+}
+
+.btn-registration:hover {
+    background-color: #8fa051; /* Verde claro */
+    transform: translateY(-2px);
+}
+
+/* Estilos para la previsualización de imagen */
+.image-preview {
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+
+/* Estilos para mensajes de salida */
+.message-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.message-header {
+    background-color: #6c7a2c; /* Verde oscuro */
+    color: white;
+    font-weight: bold;
+}
+
+.message-body {
+    padding: 2rem;
+}
+
+/* Botón de regresar */
+.btn-back {
+    background-color: #6c7a2c; /* Verde oscuro */
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-weight: 600;
+    font-style: italic;
+    transition: all 0.3s;
+}
+
+.btn-back:hover {
+    background-color: #8fa051; /* Verde claro */
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Ajustes responsivos para formularios */
+@media (max-width: 768px) {
+    .registration-container {
+        margin: 1rem auto;
+        padding: 0 10px;
+    }
+    
+    .registration-body {
+        padding: 1.5rem;
+    }
+}
+
+/* Centrar el botón de activación en el formulario */
+.registration-container .card-footer {
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+}
+
+.registration-container .btn-registration {
+    min-width: 200px;
+    padding: 12px 30px;
+}
+
+
