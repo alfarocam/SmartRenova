@@ -3,7 +3,6 @@
 Proyecto final del curso **Desarrollo Web y Patrones** (Grupo 3 – II Cuatrimestre 2025).
 
 SmartRenova es una plataforma para la gestión y visualización de productos de construcción y remodelación del hogar, con funcionalidades de catálogo, clasificación y gestión de usuarios. 
-Esta versión contiene el 40% mínimo de las historias de usuario requeridas para la entrega parcial.
 
 ## 🧱 Tecnologías utilizadas
 - Java 24
